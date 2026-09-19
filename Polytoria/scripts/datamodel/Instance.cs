@@ -30,6 +30,7 @@ public partial class Instance : NetworkedObject
 
 	private string? _legacyName = null;
 	private string[] _tags = [];
+	private Dictionary<string, object> _attributes = [];
 	private bool _archivable;
 	internal readonly Dictionary<string, Instance> legacyChild = [];
 	private bool _isHidden = false;
@@ -306,6 +307,7 @@ public partial class Instance : NetworkedObject
 	[ScriptProperty] public PTSignal<Instance> ChildDeleted { get; private set; } = new();
 	[ScriptProperty] public PTSignal<string> TagAdded { get; private set; } = new();
 	[ScriptProperty] public PTSignal<string> TagRemoved { get; private set; } = new();
+	[ScriptProperty] public PTSignal<string, object> AttributeChanged { get; private set; } = new();
 
 	internal void AddLegacyNameToParent()
 	{
@@ -337,6 +339,38 @@ public partial class Instance : NetworkedObject
 		{
 			Parent.NameToChild.Remove(Name);
 		}
+	}
+
+	[ScriptMethod]
+	public void SetAttribute(string name, object? value)
+	{
+		if (string.IsNullOrEmpty(name)) return;
+
+		if (value == null)
+		{
+			if (_attributes.Remove(name))
+			{
+				AttributeChanged.Invoke(name, null);
+				OnPropertyChanged();
+			}
+			return;
+		}
+
+		_attributes[name] = value;
+		AttributeChanged.Invoke(name, value);
+		OnPropertyChanged();
+	}
+
+	[ScriptMethod]
+	public object? GetAttribute(string name)
+	{
+		return _attributes.GetValueOrDefault(name);
+	}
+
+	[ScriptMethod]
+	public Dictionary<string, object> GetAttributes()
+	{
+		return new Dictionary<string, object>(_attributes);
 	}
 
 	[ScriptMethod]
