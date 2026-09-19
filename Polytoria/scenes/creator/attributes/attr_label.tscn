@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dbho57h8g21dg"]
+
+[ext_resource type="Script" uid="uid://bdu7138am8gjh" path="res://scripts/creator/ui/docks/properties/tags/TagLabel.cs" id="1_wtp50"]
+[ext_resource type="Texture2D" uid="uid://dkrmo5o0uxt24" path="res://assets/textures/ui-icons/x.svg" id="2_44t1q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70iis"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.16, 0.16, 0.16, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="AttrLabel" type="PanelContainer" unique_id=966922886]
+theme_override_styles/panel = SubResource("StyleBoxFlat_70iis")
+script = ExtResource("1_wtp50")
+
+[node name="Layout" type="VBoxContainer" parent="." unique_id=541422393]
+layout_mode = 2
+
+[node name="TopLine" type="HBoxContainer" parent="Layout" unique_id=50624987]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="Layout/TopLine" unique_id=581468394]
+layout_mode = 2
+text = "Attribute Name"
+
+[node name="TypeOption" type="OptionButton" parent="Layout/TopLine" unique_id=1340120511]
+layout_mode = 2
+
+[node name="Delete" type="Button" parent="Layout/TopLine" unique_id=1586813833]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+icon = ExtResource("2_44t1q")
+flat = true
+expand_icon = true
+
+[node name="ValueEdit" type="TextEdit" parent="Layout" unique_id=153607126]
+layout_mode = 2
+placeholder_text = "Attribute value..."
