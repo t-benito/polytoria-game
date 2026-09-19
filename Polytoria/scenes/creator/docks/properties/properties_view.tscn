@@ -5,6 +5,7 @@
 [ext_resource type="Theme" uid="uid://b8s4v4oexg17g" path="res://resources/themes/creator/properties.tres" id="3_ckisg"]
 [ext_resource type="Script" uid="uid://bjp1m700i0umd" path="res://scripts/creator/ui/docks/properties/tags/InstanceTagView.cs" id="3_jgprv"]
 [ext_resource type="Texture2D" uid="uid://cym4kvy4h2vh5" path="res://assets/textures/ui-icons/plus.svg" id="4_70iis"]
+[ext_resource type="Script" uid="uid://bri0wt5kv8x2u" path="res://scripts/creator/ui/docks/properties/tags/InstanceAttributeView.cs" id="6_p8b7e"]
 
 [node name="TabContainer" type="TabContainer" unique_id=1892077787]
 anchors_preset = 15
@@ -13,11 +14,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_istb8")
-current_tab = 0
+current_tab = 2
 tabs_position = 1
 script = ExtResource("1_qnycq")
 
 [node name="Properties" type="ScrollContainer" parent="." unique_id=1188109505]
+visible = false
 layout_mode = 2
 follow_focus = true
 scroll_hint_mode = 2
@@ -91,19 +93,13 @@ text = "Select a single instance to edit it's tags"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Attributes" type="MarginContainer" parent="." unique_id=55761600 node_paths=PackedStringArray("_container", "_newTagEdit", "_plusButton", "_tagLayout", "_blankLayout")]
-visible = false
+[node name="Attributes" type="MarginContainer" parent="." unique_id=55761600]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
-script = ExtResource("3_jgprv")
-_container = NodePath("Layout/Container")
-_newTagEdit = NodePath("Layout/TopLine/AttrNameEdit")
-_plusButton = NodePath("Layout/TopLine/PlusButton")
-_tagLayout = NodePath("Layout")
-_blankLayout = NodePath("BlankLayout")
+script = ExtResource("6_p8b7e")
 metadata/_tab_index = 2
 
 [node name="Layout" type="VBoxContainer" parent="Attributes" unique_id=1009973812]
@@ -117,8 +113,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "New attribute name..."
 
-[node name="AttrTypeOption" type="OptionButton" parent="Attributes/Layout/TopLine" unique_id=1155180400]
+[node name="AttrValueEdit" type="LineEdit" parent="Attributes/Layout/TopLine" unique_id=460824751]
 layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Attribute value..."
 
 [node name="PlusButton" type="Button" parent="Attributes/Layout/TopLine" unique_id=1002974264]
 custom_minimum_size = Vector2(24, 24)
@@ -126,14 +124,6 @@ layout_mode = 2
 icon = ExtResource("4_70iis")
 flat = true
 expand_icon = true
-
-[node name="ValueLine" type="HBoxContainer" parent="Attributes/Layout" unique_id=1085935423]
-layout_mode = 2
-
-[node name="AttrValueEdit" type="LineEdit" parent="Attributes/Layout/ValueLine" unique_id=460824751]
-layout_mode = 2
-size_flags_horizontal = 3
-placeholder_text = "Attribute value..."
 
 [node name="Container" type="HFlowContainer" parent="Attributes/Layout" unique_id=840341273]
 layout_mode = 2

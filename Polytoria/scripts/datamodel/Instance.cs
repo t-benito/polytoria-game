@@ -283,6 +283,13 @@ public partial class Instance : NetworkedObject
 		}
 	}
 
+	[Editable(IsHidden = true), ScriptProperty]
+	public Dictionary<string, object> Attributes
+	{
+		get => _attributes;
+		set => _attributes = value;
+	}
+
 	[Editable, ScriptProperty, DefaultValue(true)]
 	public bool Archivable
 	{
@@ -365,12 +372,6 @@ public partial class Instance : NetworkedObject
 	public object? GetAttribute(string name)
 	{
 		return _attributes.GetValueOrDefault(name);
-	}
-
-	[ScriptMethod]
-	public Dictionary<string, object> GetAttributes()
-	{
-		return new Dictionary<string, object>(_attributes);
 	}
 
 	[ScriptMethod]

@@ -14,30 +14,44 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtp50"]
+content_margin_left = 12.0
+content_margin_top = 8.0
+content_margin_right = 12.0
+content_margin_bottom = 8.0
+bg_color = Color(0.11489693, 0.11489677, 0.1148968, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [node name="AttrLabel" type="PanelContainer" unique_id=966922886]
 theme_override_styles/panel = SubResource("StyleBoxFlat_70iis")
 script = ExtResource("1_wtp50")
 
-[node name="Layout" type="VBoxContainer" parent="." unique_id=541422393]
+[node name="Layout" type="HBoxContainer" parent="." unique_id=50624987]
 layout_mode = 2
 
-[node name="TopLine" type="HBoxContainer" parent="Layout" unique_id=50624987]
-layout_mode = 2
-
-[node name="NameLabel" type="Label" parent="Layout/TopLine" unique_id=581468394]
+[node name="NameLabel" type="Label" parent="Layout" unique_id=581468394]
 layout_mode = 2
 text = "Attribute Name"
 
-[node name="TypeOption" type="OptionButton" parent="Layout/TopLine" unique_id=1340120511]
+[node name="ValuePanel" type="Panel" parent="Layout" unique_id=1486092434]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wtp50")
 
-[node name="Delete" type="Button" parent="Layout/TopLine" unique_id=1586813833]
+[node name="ValueLabel" type="Label" parent="Layout/ValuePanel" unique_id=261141029]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 1.0
+offset_right = 130.0
+offset_bottom = 22.0
+text = "Attribute Value"
+
+[node name="Delete" type="Button" parent="Layout" unique_id=1586813833]
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
 icon = ExtResource("2_44t1q")
 flat = true
 expand_icon = true
-
-[node name="ValueEdit" type="TextEdit" parent="Layout" unique_id=153607126]
-layout_mode = 2
-placeholder_text = "Attribute value..."
